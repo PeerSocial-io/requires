@@ -1,6 +1,6 @@
-// define(function (require, exports, module) {
-  
-  var helloVal = require("./nest/helloVal.js")
-  exports.hello = helloVal;
- 
-// })
+
+//your old basic nodejs module
+
+var helloVal = require("./nest/helloVal.js")
+
+module.exports = helloVal;

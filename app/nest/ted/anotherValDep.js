@@ -1,12 +1,9 @@
 define(function (require, exports) {
   
-
+// now lets do uses exports object
 var es6 = exports;
 
-es6.hello = require("./a.es6.file.js");
-// var es6 = { apple: "red"}
-
-
+es6.hello = require("./a.es6.file.js");//require a es module
 
 
 })

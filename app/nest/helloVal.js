@@ -1,7 +1,6 @@
-// define(function (require, exports, module) {
-  
-  var val = require('./ted/anotherValDep.js');
 
-  module.exports = val;
+//your old basic nodejs module in a folder
 
-// })
+var val = require('./ted/anotherValDep.js');//realitive
+
+module.exports = val;

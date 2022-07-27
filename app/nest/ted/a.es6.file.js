@@ -1,3 +1,5 @@
+
+// a basic esmodule
 import worldVal from "./anotherDep.js"
 
 export default (function world(worldVal){
