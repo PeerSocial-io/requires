@@ -5,18 +5,25 @@
   "main": "index.js",
   "scripts": {
     "bash": "bash",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "webpack serve",
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/preset-env": "^7.18.9",
+    "@babel/standalone": "^7.18.9",
     "babel": "^6.23.0",
     "babel-loader": "^8.2.5",
     "babel-plugin-transform-modules-requirejs": "^0.1.4",
+    "browserify": "^17.0.0",
     "crypto-browserify": "^3.12.0",
+    "html-webpack-plugin": "^5.5.0",
     "ifdef-loader": "^2.3.2",
     "node-fetch": "^2.6.7",
     "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
     "vm-browserify": "^1.1.2",
     "webpack": "^5.74.0",
