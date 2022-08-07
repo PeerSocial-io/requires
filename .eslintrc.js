@@ -12,5 +12,8 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
+        "global": ["Promise"],
+        "semi": "warn",
+        "no-unused-vars": "warn"
     }
-}
+};
