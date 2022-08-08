@@ -3,12 +3,13 @@
 
 var configured_packages = require("./nest/helloVal.js")
 
+// throw new Error("darn")
 
     // configured_packages.bnjs = require("bn.js");
     // console.log("bnjs", configured_packages.bnjs);
 
-    // configured_packages.elliptic = require("elliptic");
-    // console.log("elliptic", configured_packages.elliptic);
+    configured_packages.elliptic = require("elliptic");
+    console.log("elliptic", configured_packages.elliptic);
 
     // configured_packages.buffer = require("buffer");
     // console.log("buffer", configured_packages.buffer);
