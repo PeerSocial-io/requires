@@ -6,7 +6,10 @@ module.exports = {
         "es2021": true,
         "amd": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"

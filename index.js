@@ -3,11 +3,14 @@
   // require.home("./");
   // require.provider("./app/node_modules/");
   require.provider("https://unpkg.com/");
+  
+  var configured_packages = {};
+  
+  // configured_packages.react = await require.install("react");
+  
+  configured_packages.app = await require.install("./app");
 
   
-  var configured_packages = await require.install("./app");
-
-  // await require.install("bn.js");
   // await require.install("elliptic");
   
 

@@ -3,10 +3,33 @@
 
 var configured_packages = require("./nest/helloVal.js");
 
+var React = require("react");
+
+class ShoppingList extends React.Component {
+    render() {
+      return (
+        <div className="shopping-list">
+          <h1>Shopping List for {this.props.name}</h1>
+          <ul>
+            <li>Instagram</li>
+            <li>WhatsApp</li>
+            <li>Oculus</li>
+          </ul>
+        </div>
+      );
+    }
+  }
+
+
+  console.log("process",process);
+
 // throw new Error("darn")
 
-    configured_packages.bnjs = require("bn.js");
-    // console.log("bnjs", configured_packages.bnjs);
+    // configured_packages.bnjs = require("bn.js");
+    // // console.log("bnjs", configured_packages.bnjs);
+
+    configured_packages.ShoppingList = ShoppingList;
+    // console.log("ShoppingList", configured_packages.ShoppingList);
 
     // configured_packages.elliptic = require("elliptic");
     // // console.log("elliptic", configured_packages.elliptic);
