@@ -1,8 +1,8 @@
 (async function (require) {
 
   // require.home("./");
-  require.provider("./app/node_modules/");
-  // require.provider("https://unpkg.com/");
+  // require.provider("./app/node_modules/");
+  require.provider("https://unpkg.com/");
 
   
   var configured_packages = await require.install("./app");
