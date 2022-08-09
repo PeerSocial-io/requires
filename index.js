@@ -1,7 +1,7 @@
 (async function (require) {
 
   // require.home("./");
-  // require.provider("./node_modules/");
+  require.provider("./app/node_modules/");
   // require.provider("https://unpkg.com/");
 
   
