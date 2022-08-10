@@ -2,47 +2,30 @@
 
   // require.home("./");
   // require.provider("./app/node_modules/");
-  require.provider("https://unpkg.com/");
-  
+  // require.provider("https://unpkg.com/");
+
   var configured_packages = {};
-  
-  // configured_packages.react = await require.install("react");
-  
-  configured_packages.app = await require.install("./app");
 
-  
-  // await require.install("elliptic");
-  
+  var crypto = configured_packages.crypto = require("crypto");
+  var pako = configured_packages.pako = require("pako");
+  var tar = configured_packages.tar = require("tar");
+  var fetch = configured_packages.fetch = require("fetch");
 
-  // console.log("packages installed");
 
-  // configured_packages.crypto = require("crypto");
-  // console.log("crypto", configured_packages.crypto);
+  var Tarball = tar.Tarball;
 
-  // configured_packages.app = require("app");
-  // console.log("app", configured_packages.app);
+  var nodeForge_registry = JSON.parse(await fetch("https://registry.npmjs.org/node-forge/"));
+  var nodeForge_version = nodeForge_registry['dist-tags'].latest;
+  var nodeForge_version_package = nodeForge_registry.versions[nodeForge_version];
 
-  // configured_packages.bnjs = require("bn.js");
-  // console.log("bnjs", configured_packages.bnjs);
+  var tarball_zipped = new Uint8Array(await fetch(nodeForge_version_package.dist.tarball, 'buffer'));
+  var hash = crypto.createHash('sha512').update(tarball_zipped).digest('base64');
+  var hashCheck = ("sha512-" + hash == nodeForge_version_package.dist.integrity);
+  if (hashCheck) {
+    var tarball = pako.ungzip(tarball_zipped);
+    var entriesFromBigFile = Tarball.extract(tarball);
 
-  // configured_packages.elliptic = require("elliptic");
-  // console.log("elliptic", configured_packages.elliptic);
-
-  // configured_packages.buffer = require("buffer");
-  // console.log("buffer", configured_packages.buffer);
-
-  // configured_packages.webcrypto = require("@peculiar/webcrypto");
-  // console.log("webcrypto", configured_packages.webcrypto);
-
-  // configured_packages.forge = require("node-forge");
-  // console.log("forge", configured_packages.forge);
-
-  // var app = require("app/main");
-
-  // var elliptic = (await require(["elliptic"], function(elliptic){
-
-  // }))[0];
-  
-  
-  console.log("configured_packages",configured_packages);
-})(require("./lib/requires.js"));
+    console.log(entriesFromBigFile);
+  }
+  console.log("configured_packages", configured_packages);
+})(require("./lib/requires.js")());

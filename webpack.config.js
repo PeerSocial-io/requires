@@ -3,7 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const webpack_env = {}
+const webpack_env = {};
 
 // webpack_env['process.env.NODE_DEBUG'] = JSON.stringify(true);
 
@@ -16,7 +16,8 @@ const DEFINED = {
   "ifdef-uncomment-prefix": "// #code " // add this to uncomment code starting with "// #code "
 };
 
-console.log("__dirname", __dirname)
+console.log("__dirname", __dirname);
+
 module.exports = {
   context: __dirname,
   mode: 'development',
@@ -55,6 +56,13 @@ module.exports = {
       "crypto": require.resolve("crypto-browserify"),
       "path": require.resolve("path-browserify"),
       "stream": require.resolve("stream-browserify"),
+      "os": require.resolve("os-browserify"),
+      "https": require.resolve("https-browserify"),
+      "http": require.resolve("stream-http"),
+      "process": require.resolve("process"),
+      "assert": require.resolve("assert"), 
+      "url": require.resolve("url"),
+      "zlib": require.resolve("browserify-zlib"),
       "fs": false,
     },
     alias: {
@@ -69,15 +77,22 @@ module.exports = {
       use: [{
           loader: "ifdef-loader",
           options: DEFINED
-        },
-        // {
+        }
+        // ,{
 
         //   loader: "babel-loader",
         //   options: {
-        //     presets: ["@babel/preset-env", "@babel/preset-react"],
+        //     presets: ["@babel/preset-env"],
         //   },
         // },
       ],
+    }, {
+      test: /\.(mjs|js|jsx)$/,
+      include: /node_modules/,
+      type: 'javascript/auto',
+      resolve: {
+        fullySpecified: false
+      }
     }]
   },
 };
