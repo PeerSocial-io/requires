@@ -2,9 +2,11 @@
 
   // require.home("./");
   // require.provider("./app/node_modules/");
-  // require.provider("https://unpkg.com/");
+  require.provider("https://unpkg.com/");
 
   var configured_packages = {};
+
+  await require.install("pako@2.0.4");
 
   var crypto = configured_packages.crypto = require("crypto");
   var zlib = configured_packages.zlib = require("zlib");
