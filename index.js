@@ -7,7 +7,7 @@
   var configured_packages = {};
 
   var crypto = configured_packages.crypto = require("crypto");
-  var pako = configured_packages.pako = require("pako");
+  var zlib = configured_packages.zlib = require("zlib");
   var tar = configured_packages.tar = require("tar");
   var fetch = configured_packages.fetch = require("fetch");
 
@@ -22,10 +22,12 @@
   var hash = crypto.createHash('sha512').update(tarball_zipped).digest('base64');
   var hashCheck = ("sha512-" + hash == nodeForge_version_package.dist.integrity);
   if (hashCheck) {
-    var tarball = pako.ungzip(tarball_zipped);
-    var entriesFromBigFile = Tarball.extract(tarball);
+    zlib.gunzip(tarball_zipped,(err,tarball)=>{
 
-    console.log(entriesFromBigFile);
+      var entriesFromBigFile = Tarball.extract(tarball);
+
+      console.log(entriesFromBigFile);
+    });
   }
   console.log("configured_packages", configured_packages);
 })(require("./lib/requires.js")());
