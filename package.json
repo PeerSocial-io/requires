@@ -1,12 +1,12 @@
 {
-  "name": "requires",
+  "name": "@PeerSocial-io/requires",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "browser": "browser/index.js",
   "scripts": {
     "bash": "bash",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node ./test.js",
     "serve": "webpack serve",
     "build": "webpack"
   },

@@ -19,7 +19,7 @@ class ShoppingList extends React.Component {
   }
 
 
-  console.log("app reading process object",process);
+  // console.log("app reading process object",process);
 // debugger;
 // throw new Error("darn")
 
