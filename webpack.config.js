@@ -32,12 +32,6 @@ module.exports = {
     webSocketServer:false,
   },
   plugins: [
-    // new CopyWebpackPlugin({
-    //   patterns: [{
-    //     from: path.resolve(__dirname, './app'),
-    //     to: './app'
-    //   }]
-    // }),
     new webpack.ProvidePlugin({
       Buffer: ['buffer', 'Buffer'],
       process: 'process/browser'
@@ -47,7 +41,7 @@ module.exports = {
     //   title: 'Development',
     // }),
   ],
-  node: { global: true  }, // Fix: "Uncaught ReferenceError: global is not defined", and "Can't resolve 'fs'".
+  node: { global: true  },
   output: {
     filename: '[name].js',
     library: 'requires',
@@ -77,8 +71,9 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules\/(?!(peersocial.io\/src)\/).*/,
+      test: /\.(mjs|js|jsx)$/,
+      include: path.resolve(__dirname, "./lib"),
+      // exclude: /node_modules\/ifdef-loader/,
       use: [{
           loader: "ifdef-loader",
           options: DEFINED
