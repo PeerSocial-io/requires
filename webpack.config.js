@@ -1,7 +1,7 @@
 var webpack = require("webpack");
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-// var CopyWebpackPlugin = require('copy-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var webpack_env = {};
 
@@ -23,7 +23,7 @@ module.exports = function () {
 
   var index = {
     context: __dirname,
-    mode: 'development',
+    mode: 'production',
     entry: {
       index: './index.js'
     },
@@ -43,6 +43,11 @@ module.exports = function () {
         template: './test.html',
         inject: false
       }),
+      new CopyWebpackPlugin({
+        patterns: [
+          "./test.js"
+        ]
+      })
     ],
     node: {
       global: true
