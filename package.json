@@ -6,7 +6,7 @@
   "browser": "browser/index.js",
   "scripts": {
     "bash": "bash",
-    "test": "node ./test.js",
+    "test": "bash test_setup.sh && node ./test.js",
     "serve": "webpack serve",
     "build": "webpack"
   },
