@@ -6,7 +6,7 @@ var requires = (typeof window !== "undefined" ? window.requires() : require("./i
   var configured_packages = {};
   require.debug = true;
 
-  require.home("./test_app");
+  require.home("../test_app");
   // require.registry.setDefault("node_modules");
 
   configured_packages.gun = await require.install("gun");

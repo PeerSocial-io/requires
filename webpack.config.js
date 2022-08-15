@@ -23,7 +23,8 @@ module.exports = function () {
 
   var index = {
     context: __dirname,
-    mode: 'production',
+    // mode: 'production',
+    mode: 'development',
     entry: {
       index: './index.js'
     },
@@ -45,7 +46,7 @@ module.exports = function () {
       }),
       new CopyWebpackPlugin({
         patterns: [
-          "./test.js"
+          "./test.js",
         ]
       })
     ],
