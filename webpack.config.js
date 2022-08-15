@@ -1,6 +1,6 @@
 var webpack = require("webpack");
 var path = require('path');
-// var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 // var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var webpack_env = {};
@@ -23,7 +23,7 @@ module.exports = function () {
 
   var index = {
     context: __dirname,
-    mode: process.env.DEBUG || 0,
+    mode: 'development',
     entry: {
       index: './index.js'
     },
@@ -38,9 +38,11 @@ module.exports = function () {
         process: 'process/browser'
       }),
       new webpack.DefinePlugin(webpack_env),
-      // new HtmlWebpackPlugin({
-      //   title: 'Development',
-      // }),
+      new HtmlWebpackPlugin({
+        title: 'Development',
+        template: './test.html',
+        inject: false
+      }),
     ],
     node: {
       global: true
@@ -92,12 +94,7 @@ module.exports = function () {
     },
   };
 
-  if (!index.mode){
-    index.mode = 'production';
-  }else{
-    DEFINED.DEBUG = index.mode;
-    index.mode = 'development';
-  }
   
+  console.log(index.mode);
   return [index];
 };
