@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "browser": "browser/index.js",
   "scripts": {
     "bash": "bash",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,10 +12,14 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "@babel/preset-env": "^7.18.9",
     "@babel/standalone": "^7.18.9",
     "@obsidize/tar-browserify": "^2.1.2",
+    "semver": "^7.3.7",
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
     "assert": "^2.0.0",
     "babel": "^6.23.0",
     "babel-loader": "^8.2.5",
@@ -28,11 +33,9 @@
     "html-webpack-plugin": "^5.5.0",
     "https-browserify": "^1.0.0",
     "ifdef-loader": "^2.3.2",
-    "node-fetch": "^2.6.7",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
-    "semver": "^7.3.7",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "url": "^0.11.0",

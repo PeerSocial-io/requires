@@ -7,6 +7,8 @@ const webpack_env = {};
 
 // webpack_env['process.env.NODE_DEBUG'] = JSON.stringify(true);
 
+webpack_env['global'] = "globalThis";
+
 
 const DEFINED = {
   DEBUG: true,
@@ -26,7 +28,7 @@ module.exports = {
   },
   devServer: {
     allowedHosts: 'all',
-    static: [path.resolve(__dirname, './'), path.resolve(__dirname, './dist')],  
+    static: [path.resolve(__dirname, './')],  
     webSocketServer:false,
   },
   plugins: [
@@ -38,17 +40,21 @@ module.exports = {
     // }),
     new webpack.ProvidePlugin({
       Buffer: ['buffer', 'Buffer'],
-      process: 'process/browser',
+      process: 'process/browser'
     }),
     new webpack.DefinePlugin(webpack_env),
-    new HtmlWebpackPlugin({
-      title: 'Development',
-    }),
+    // new HtmlWebpackPlugin({
+    //   title: 'Development',
+    // }),
   ],
+  node: { global: true  }, // Fix: "Uncaught ReferenceError: global is not defined", and "Can't resolve 'fs'".
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js',
+    library: 'requires',
+    path: path.resolve(__dirname,"./browser"),
     clean: true,
+    libraryTarget: 'umd',
+    globalObject: 'typeof global !== "undefined" ? global : typeof window !== "undefined" ? window : this'
   },
   resolve: {
     fallback: {
@@ -69,7 +75,6 @@ module.exports = {
       process: "process/browser"
     }
   },
-
   module: {
     rules: [{
       test: /\.(js|jsx)$/,
@@ -78,13 +83,6 @@ module.exports = {
           loader: "ifdef-loader",
           options: DEFINED
         }
-        // ,{
-
-        //   loader: "babel-loader",
-        //   options: {
-        //     presets: ["@babel/preset-env"],
-        //   },
-        // },
       ],
     }, {
       test: /\.(mjs|js|jsx)$/,
@@ -96,3 +94,6 @@ module.exports = {
     }]
   },
 };
+
+if(!module.exports.mode)
+  module.exports.mode = 'production';
