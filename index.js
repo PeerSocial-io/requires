@@ -8,10 +8,10 @@
 
   var configured_packages = {};
 
-  // configured_packages.app = await require.install("./app");
+  configured_packages.app = await require.install("./app");
   configured_packages.elliptic = await require.install("elliptic");
-  // configured_packages.pako = await require.install("pako");
-  // configured_packages.forge = await require.install("node-forge");
+  configured_packages.pako = await require.install("pako");
+  configured_packages.forge = await require.install("node-forge");
 
   // var crypto = configured_packages.crypto = require("crypto");
   // var zlib = configured_packages.zlib = require("zlib");
