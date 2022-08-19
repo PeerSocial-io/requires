@@ -1,6 +1,6 @@
 
 
-var isBrowser = !(typeof process == "undefined") &&  process.env.browser ? true : false;
+var isBrowser = !(typeof window == "undefined") ? true : false;
 
 
 var requires = (isBrowser && window.requires ? window.requires() : require("./index.js")());
