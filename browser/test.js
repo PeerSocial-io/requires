@@ -1,6 +1,6 @@
 
 
-var isBrowser = process.env.browser ? true : false;
+var isBrowser = !(typeof process == "undefined") &&  process.env.browser ? true : false;
 
 
 var requires = (isBrowser && window.requires ? window.requires() : require("./index.js")());
@@ -15,12 +15,19 @@ var requires = (isBrowser && window.requires ? window.requires() : require("./in
     require.home("../test_app");
   else 
     require.home("./test_app");
-  // require.registry.setDefault("node_modules");
+  
+    // require.registry.setDefault("node_modules");
 
   configured_packages.gun = await require.install("gun");
   assert.equal(typeof configured_packages.gun.version == "undefined", false, "gun should Have a version");
   
   configured_packages.provable = await require.install("provable");
+  var engine = configured_packages.provable({
+    count:10000, //default:1, number of hashes in the series to produce, takes longer depending on how big the number is
+    seed:'optional seed to start your series with' //defaults to some random string with letters and numbers
+  });
+  var int32 = engine();//return a random int32 and increments the internal state to the next hash
+  assert.equal(3274417075, int32, "provable math failed");
   
   configured_packages.bnjs = await require.install("bn.js");
   assert.equal(typeof configured_packages.bnjs.BN == "undefined", false, "bnjs should Have a BN in object");
