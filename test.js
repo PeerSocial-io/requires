@@ -1,4 +1,9 @@
-var requires = (typeof window !== "undefined" ? window.requires() : require("./index.js")());
+
+
+var isBrowser = process.env.browser ? true : false;
+
+
+var requires = (isBrowser ? window.requires() : require("./index.js")());
 
 (async function (require) {
   var assert = require("assert");
@@ -6,7 +11,10 @@ var requires = (typeof window !== "undefined" ? window.requires() : require("./i
   var configured_packages = {};
   require.debug = true;
 
-  require.home("../test_app");
+  if(isBrowser)
+    require.home("../test_app");
+  else 
+    require.home("./test_app");
   // require.registry.setDefault("node_modules");
 
   configured_packages.gun = await require.install("gun");
