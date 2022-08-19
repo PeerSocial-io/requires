@@ -21,7 +21,7 @@ var requires = (isBrowser && window.requires ? window.requires() : require("./in
   configured_packages.gun = await require.install("gun");
   assert.equal(typeof configured_packages.gun.version == "undefined", false, "gun should Have a version");
   
-  configured_packages.provable = await require.install("provable");
+  configured_packages.provable = await require.install("unpkg:provable");
   var engine = configured_packages.provable({
     count:10000, //default:1, number of hashes in the series to produce, takes longer depending on how big the number is
     seed:'optional seed to start your series with' //defaults to some random string with letters and numbers
