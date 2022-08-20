@@ -34,12 +34,28 @@ module.exports = function () {
     },
     devServer: {
       allowedHosts: 'all',
-      static: [path.resolve(__dirname, './')],
-      hot: true,
+      // static: [path.resolve(__dirname, './')],
+      static:[
+        {
+          directory: path.join(__dirname, './test_app'),
+          publicPath: '/test_app',
+        },
+        {
+          directory: path.join(__dirname, './'),
+          publicPath: '/',
+        },
+      ],
       webSocketServer: false,
       client: {
         progress: true,
         overlay: true,
+      },
+      devMiddleware: {
+        // index: true,
+        // mimeTypes: { phtml: 'text/html' },
+        publicPath: '/browser',
+        // serverSideRender: true,
+        // writeToDisk: true,
       },
     },
     plugins: [

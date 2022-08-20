@@ -13,7 +13,7 @@ var requires = (isBrowser && window.requires ? window.requires() : require("./re
 
   if(isBrowser)
     require.home("../test_app");
-  else 
+  else  
     require.home("./test_app");
   
     // require.registry.setDefault("node_modules");
