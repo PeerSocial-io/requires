@@ -3,7 +3,7 @@
 var isBrowser = !(typeof window == "undefined") ? true : false;
 
 
-var requires = (isBrowser && window.requires ? window.requires() : require("./index.js")());
+var requires = (isBrowser && window.requires ? window.requires() : require("./require.js")());
 
 (async function (require) {
   var assert = require("assert");

@@ -4,11 +4,14 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var webpack_env = {};
+if(!process.env.DEBUG) process.env.NODE_ENV = "production";
+else process.env.NODE_ENV = "development";
 
-// webpack_env['process.env.NODE_DEBUG'] = JSON.stringify(true);
+// webpack_env['process.env._NODE_ENV'] = JSON.stringify(process.env.NODE_ENV);
 
 webpack_env['global'] = "globalThis";
 
+console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 
 var DEFINED = {
   "ifdef-verbose": true, // add this for verbose output
@@ -24,14 +27,20 @@ module.exports = function () {
   var index = {
     context: __dirname,
     // mode: 'production',
-    mode: 'development',
+    // mode: 'development',
+    mode: process.env.DEBUG ? 'development' : 'production',
     entry: {
-      index: './index.js'
+      requires: './requires.js'
     },
     devServer: {
       allowedHosts: 'all',
       static: [path.resolve(__dirname, './')],
+      hot: true,
       webSocketServer: false,
+      client: {
+        progress: true,
+        overlay: true,
+      },
     },
     plugins: [
       new webpack.ProvidePlugin({
@@ -42,6 +51,7 @@ module.exports = function () {
       new HtmlWebpackPlugin({
         title: 'Development',
         template: './test.html',
+        filename: "test.html",
         inject: false
       }),
       new CopyWebpackPlugin({
