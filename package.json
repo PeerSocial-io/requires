@@ -11,7 +11,7 @@
     "build": "webpack"
   },
   "author": "Bradley Matusiak <bmatusiak.x>",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "dependencies": {
     "@babel/preset-env": "^7.18.9",
     "@babel/standalone": "^7.18.9",
