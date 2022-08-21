@@ -1,17 +1,17 @@
 {
-  "name": "@PeerSocial-io/requires",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "browser": "browser/index.js",
+  "name": "@peersocial-io/requires",
+  "version": "0.0.1",
+  "description": "require(js) remastered to handle tarballs",
+  "main": "requires.js",
+  "browser": "browser/requires.js",
   "scripts": {
     "bash": "bash",
-    "test": "bash test_setup.sh && node ./test.js",
-    "serve": "webpack serve",
+    "test": "node ./test.js",
+    "serve": "DEBUG=1 webpack serve",
     "build": "webpack"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Bradley Matusiak <bmatusiak.x>",
+  "license": "UNLICENSED",
   "dependencies": {
     "@babel/preset-env": "^7.18.9",
     "@babel/standalone": "^7.18.9",
