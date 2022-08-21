@@ -3,13 +3,13 @@
 var isBrowser = !(typeof window == "undefined") ? true : false;
 
 
-var requires = (isBrowser && window.requires ? window.requires() : require("./require.js")());
+var requires = (isBrowser && window.requires ? window.requires() : require("./requires.js")());
 
 (async function (require) {
   var assert = require("assert");
 
   var configured_packages = {};
-  require.debug = true;
+  // require.debug = true;
 
   if(isBrowser)
     require.home("../test_app");

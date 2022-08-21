@@ -35,6 +35,7 @@ module.exports = function () {
     devServer: {
       allowedHosts: 'all',
       // static: [path.resolve(__dirname, './')],
+      hot: false,
       static:[
         {
           directory: path.join(__dirname, './test_app'),
@@ -45,10 +46,13 @@ module.exports = function () {
           publicPath: '/',
         },
       ],
-      webSocketServer: false,
+      // webSocketServer: false,
       client: {
         progress: true,
         overlay: true,
+        webSocketURL: {
+          port: 443,//needed for gitpod.io  comment out if needed to run on local machine or when port needs to match
+        },
       },
       devMiddleware: {
         // index: true,
